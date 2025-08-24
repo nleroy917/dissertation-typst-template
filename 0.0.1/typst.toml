@@ -1,0 +1,7 @@
+[package]
+name = "dissertation"
+version = "0.0.1"
+entrypoint = "lib.typ"
+authors = ["Nathan LeRoy"]
+license = "MIT"
+description = "A simple template for my dissertation."
