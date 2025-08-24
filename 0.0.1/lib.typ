@@ -15,29 +15,30 @@
   degree
 ) = {
     [
-      #set page(margin: 1in)
       #set text(size: 16pt)
       #set align(center)
-      #text(size: 18pt)[
-        #v(36pt)
-        #upper([*#title*])
-    ]
-      #v(36pt)
-      by
-      #v(36pt)
-      #author
-      #v(36pt)
-      #upper([A dissertation])\
-      #v(36pt)
-      Submitted to the #school\
-      #university\
-      #v(36pt)
-      In partial fulfillment of the requirements\
-      for the degree of
-      #v(36pt)
-      #degree\
-      #v(96pt)
-      #monthYearTimeStamp()
+      #stack(
+        dir: ttb,
+        spacing: 64pt,
+        text(size: 18pt)[
+            #upper([*#title*])
+        ],
+        [by],
+        [#author],
+        [A DISSERTATION],
+        [
+            Submitted to the #school\
+            #university
+        ],
+        [
+            In partial fulfillment of the requirements\
+            for the degree of            
+        ],
+        [#degree],
+        [
+            #monthYearTimeStamp()
+        ]
+      )
     ]
     pagebreak()
 }
@@ -64,7 +65,6 @@
     // set page layout
     // 
     set page(
-        paper: "us-letter", // a4, us-letter
         number-align: center, // left, center, right
         margin: 0.5in,
         numbering: "1",
@@ -75,16 +75,16 @@
     // 
     show heading.where( level: 1 ): set text(
         font: "Helvetica",
-        size: 16pt,
+        size: 18pt,
         weight: "extrabold"
     )
     show heading.where( level: 2 ): set text(
         font: "Helvetica",
-        size: 12pt,
+        size: 16pt,
     )
     show heading.where( level: 3 ): set text(
         font: "Helvetica",
-        size: 11pt,
+        size: 12pt,
     )
     show heading.where( level: 4 ): set text(
         font: "Helvetica",
