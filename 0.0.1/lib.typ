@@ -1,13 +1,6 @@
 #import "utils.typ": *
 
-#let maketitle(title) = {
-    block(width: 100%)[
-        #set align(left)
-        = #title
-    ]
-}
-
-#let maketitlepage(
+#let titlepage(
   title,
   author,
   university,
@@ -36,7 +29,7 @@
         ],
         [#degree],
         [
-            #monthYearTimeStamp()
+            #month-year-time-stamp()
         ]
       )
     ]
@@ -63,7 +56,7 @@
     )
 
     // TITLE PAGE
-    maketitlepage(
+    titlepage(
       title,
       author,
       university,
@@ -158,11 +151,10 @@
     show figure.where(kind: table): set figure.caption(position: top)
 
     // outline for table of contents
-    // show outline.entry.where(level: 1): set outline.entry(fill: [])
-    // bold text
-    // show outline.entry.where(level: 1): set text(weight: "bold")
+    show outline.entry.where(level: 1): set outline.entry(fill: none)
+    show outline.entry.where(level: 1): set block(above: 1.2em)
+    show outline.entry.where(level: 1): set text(weight: "bold")
 
-    
     doc
 }
 

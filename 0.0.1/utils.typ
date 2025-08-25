@@ -31,7 +31,7 @@
     date
 }
 
-#let monthYearTimeStamp() = {
+#let month-year-time-stamp() = {
     let now = datetime.today()
     let month = monthname(now.month())
     let year = now.year()
