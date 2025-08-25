@@ -49,6 +49,7 @@
     university: "",
     school: "",
     degree: "",
+    dedication: none,
     doc
 ) = {
 
@@ -69,6 +70,15 @@
       school,
       degree
     )
+
+    // DEDICATION
+    if dedication != none {
+        v(192pt)
+        align(center)[
+          #dedication
+        ]
+        pagebreak()
+    }
 
     //
     // set page layout
