@@ -145,7 +145,6 @@
     // figure settings/style
     // 
     show figure.caption: set text(size: 10pt)
-    show figure.caption: set align(left)
     // https://forum.typst.app/t/how-to-customize-the-styling-of-caption-supplements/976/2
     show figure.caption: it => context [
         *#it.supplement~#it.counter.display()#it.separator*#it.body
@@ -165,6 +164,10 @@
     // show outline.entry.where(level: 1): set outline.entry(fill: none)
     show outline.entry.where(level: 1): set block(above: 1.2em)
     show outline.entry.where(level: 1): set text(weight: "bold")
+
+    // bibliography settings
+    show bibliography: set par(spacing: 0.6em)
+
 
     doc
 }
