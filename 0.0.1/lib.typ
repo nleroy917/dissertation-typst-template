@@ -118,7 +118,7 @@
 
     // paragraph settings
     set par(
-        leading: 5pt,
+        leading: 0.65em,
         justify: true,
         spacing: 1.2em,
         first-line-indent: 1.2em,    
