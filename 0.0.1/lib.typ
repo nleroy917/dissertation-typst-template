@@ -87,20 +87,20 @@
     // 
     show heading.where( level: 1 ): set text(
         font: "Helvetica",
-        size: 24pt,
+        size: 20pt,
         weight: "extrabold"
     )
     show heading.where( level: 2 ): set text(
         font: "Helvetica",
-        size: 20pt,
+        size: 18pt,
     )
     show heading.where( level: 3 ): set text(
         font: "Helvetica",
-        size: 12pt,
+        size: 16pt,
     )
     show heading.where( level: 4 ): set text(
         font: "Helvetica",
-        size: 10pt,
+        size: 12pt,
         weight: "regular",
     )
 
@@ -151,7 +151,7 @@
     show figure.where(kind: table): set figure.caption(position: top)
 
     // outline for table of contents
-    show outline.entry.where(level: 1): set outline.entry(fill: none)
+    // show outline.entry.where(level: 1): set outline.entry(fill: none)
     show outline.entry.where(level: 1): set block(above: 1.2em)
     show outline.entry.where(level: 1): set text(weight: "bold")
 
