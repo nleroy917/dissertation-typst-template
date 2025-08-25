@@ -147,8 +147,9 @@
         *#it.supplement~#it.counter.display()#it.separator*#it.body
     ]
 
-    // put table captions on top
+    // put table captions on top, reset supplement
     show figure.where(kind: table): set figure.caption(position: top)
+    show figure.where(kind: table): set figure(supplement: "Table")
 
     // outline for table of contents
     // show outline.entry.where(level: 1): set outline.entry(fill: none)
