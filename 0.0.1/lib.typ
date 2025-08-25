@@ -15,12 +15,12 @@
   degree
 ) = {
     [
-      #set text(size: 16pt)
+      #set text(size: 14pt)
       #set align(center)
       #stack(
         dir: ttb,
         spacing: 64pt,
-        text(size: 18pt)[
+        text(size: 16pt)[
             #upper([*#title*])
         ],
         [by],
@@ -52,6 +52,15 @@
     doc
 ) = {
 
+    //
+    // text settings
+    // 
+    set text(
+        font: "Helvetica",
+        size: 12pt,
+        hyphenate: false,
+    )
+
     // TITLE PAGE
     maketitlepage(
       title,
@@ -75,12 +84,12 @@
     // 
     show heading.where( level: 1 ): set text(
         font: "Helvetica",
-        size: 18pt,
+        size: 24pt,
         weight: "extrabold"
     )
     show heading.where( level: 2 ): set text(
         font: "Helvetica",
-        size: 16pt,
+        size: 20pt,
     )
     show heading.where( level: 3 ): set text(
         font: "Helvetica",
@@ -92,15 +101,14 @@
         weight: "regular",
     )
 
-    //
-    // text settings
-    // 
-    set text(
-        font: "Helvetica",
-        size: 12pt,
-        hyphenate: false,
-    )
-
+    // counter reset after each chapter
+    show heading.where(level: 1): it => {
+        counter(math.equation).update(0)
+        counter(figure.where(kind: image)).update(0)
+        counter(figure.where(kind: table)).update(0)
+        counter(figure.where(kind: raw)).update(0)
+        it
+    }
 
     // fix for citation superscript issue
     set super(typographic: false)
@@ -129,18 +137,30 @@
     //
     // figure settings/style
     // 
-    show figure.caption: set text(size: 8pt)
+    show figure.caption: set text(size: 10pt)
     show figure.caption: set align(left)
     // https://forum.typst.app/t/how-to-customize-the-styling-of-caption-supplements/976/2
     show figure.caption: it => context [
         *#it.supplement~#it.counter.display()#it.separator*#it.body
     ]
-    show figure.where(
-        kind: table
-    ): set figure.caption(position: top)
-    set figure(
-        supplement: [Fig.],
-    )
+
+    // put table captions on top
+    show figure.where(kind: table): set figure.caption(position: top)
     
+    doc
+}
+
+// instantiate a new chapter. this lets us reset the counters for figures
+#let chapter(
+    title: none,
+    number: 0,
+    doc
+) = {
+    // figure numbering so that the chapter is included (1.1, 1.2, 2.1, ...)
+    set figure(
+        supplement: [Figure],
+        numbering: (..num) => numbering("1.1", number, num.pos().first())
+    )
+    [= #title]
     doc
 }
