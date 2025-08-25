@@ -126,15 +126,19 @@
 
     
     // table settings/style
-    show table.cell.where(y: 0): strong
+    // show table.cell.where(y: 0): strong
     set table(
-        stroke: (x, y) => if y == 0 {
-            (bottom: 0.7pt + black)
-        },
+        stroke: (_, y) => (
+            left: { 0pt },
+            right: { 0pt },
+            top: if y < 1 { stroke(1pt) } else if y == 1 { none } else { 0pt },
+            bottom: if y < 1 { stroke(.5pt) } else { stroke(1pt) },
+        ),
         align: (x, y) => (
             if x > 0 { center }
             else { left }
-        )
+        ),
+        inset: 5pt
     )
 
     //
@@ -147,8 +151,14 @@
         *#it.supplement~#it.counter.display()#it.separator*#it.body
     ]
 
-    // put table captions on top, reset supplement
+    //
+    // table settings/style
+    //
+    show table: set text(size: 10pt)
+
+    // put table captions on top, fix supplement, align caption at center
     show figure.where(kind: table): set figure.caption(position: top)
+    show figure.caption.where(kind: table): set align(center)
     show figure.where(kind: table): set figure(supplement: "Table")
 
     // outline for table of contents
@@ -167,7 +177,6 @@
 ) = {
     // figure numbering so that the chapter is included (1.1, 1.2, 2.1, ...)
     set figure(
-        supplement: [Figure],
         numbering: (..num) => numbering("1.1", number, num.pos().first())
     )
     [= #title]
