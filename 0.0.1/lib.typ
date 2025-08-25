@@ -127,7 +127,7 @@
     set par(
         leading: 5pt,
         justify: true,
-        spacing: 0.6em,
+        spacing: 1.2em,
         first-line-indent: 1.2em,    
     )
 
@@ -156,6 +156,12 @@
 
     // put table captions on top
     show figure.where(kind: table): set figure.caption(position: top)
+
+    // outline for table of contents
+    // show outline.entry.where(level: 1): set outline.entry(fill: [])
+    // bold text
+    // show outline.entry.where(level: 1): set text(weight: "bold")
+
     
     doc
 }
