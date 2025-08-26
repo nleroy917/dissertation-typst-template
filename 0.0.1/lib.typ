@@ -186,6 +186,26 @@
     doc
 }
 
+#let authors(
+    authors: none,
+    affiliations: none,
+) = {
+    set text(size: 10pt)
+    block(width: 100%)[
+        #authors.map(a => {
+            if a.me [*#a.name*] else [#a.name]
+            [#super(a.affiliations)]
+        }).join(", ")\
+    ]
+    set text(size: 8pt)
+    block(width: 100%)[
+        #affiliations.enumerate().map((aff) => {
+            [#super([#aff.at(0)])]
+            [#aff.at(1)]
+        }).join("\n")
+    ]
+}
+
 #let figure-caption-extended(
     caption: none
 ) = {
