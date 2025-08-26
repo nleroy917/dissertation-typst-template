@@ -46,16 +46,14 @@
     doc
 ) = {
 
-    //
-    // text settings
-    // 
+    // generic text settings
     set text(
         font: "Helvetica",
-        size: 12pt,
+        size: 11pt,
         hyphenate: false,
     )
 
-    // TITLE PAGE
+    // make the title page
     titlepage(
       title,
       author,
@@ -64,7 +62,7 @@
       degree
     )
 
-    // DEDICATION
+    // dedication
     if dedication != none {
         v(192pt)
         align(center)[
@@ -73,36 +71,36 @@
         pagebreak()
     }
 
-    //
     // set page layout
-    // 
     set page(
         number-align: center, // left, center, right
         margin: 0.5in,
         numbering: "1",
     )
 
-    //
     // heading settings
-    // 
     show heading.where( level: 1 ): set text(
         font: "Helvetica",
-        size: 20pt,
+        size: 17pt,
         weight: "extrabold"
     )
     show heading.where( level: 2 ): set text(
         font: "Helvetica",
-        size: 18pt,
+        size: 14pt,
     )
     show heading.where( level: 3 ): set text(
         font: "Helvetica",
-        size: 16pt,
+        size: 12pt,
     )
     show heading.where( level: 4 ): set text(
         font: "Helvetica",
-        size: 12pt,
+        size: 11pt,
         weight: "regular",
+        style: "italic"
     )
+
+    // footnotes
+    show footnote: set text(size: 9pt)
 
     // counter reset after each chapter
     show heading.where(level: 1): it => {
@@ -118,7 +116,7 @@
 
     // paragraph settings
     set par(
-        leading: 0.65em,
+        leading: 0.9em,
         justify: true,
         spacing: 1.2em,
         first-line-indent: 1.2em,    
@@ -126,7 +124,6 @@
 
     
     // table settings/style
-    // show table.cell.where(y: 0): strong
     set table(
         stroke: (_, y) => (
             left: { 0pt },
@@ -141,18 +138,15 @@
         inset: 5pt
     )
 
-    //
+
     // figure settings/style
-    // 
     show figure.caption: set text(size: 10pt)
     // https://forum.typst.app/t/how-to-customize-the-styling-of-caption-supplements/976/2
     show figure.caption: it => context [
         *#it.supplement~#it.counter.display()#it.separator*#it.body
     ]
 
-    //
     // table settings/style
-    //
     show table: set text(size: 10pt)
 
     // put table captions on top, fix supplement, align caption at center
@@ -164,6 +158,9 @@
     // show outline.entry.where(level: 1): set outline.entry(fill: none)
     show outline.entry.where(level: 1): set block(above: 1.2em)
     show outline.entry.where(level: 1): set text(weight: "bold")
+
+    // equations
+    set math.equation(numbering: "(1)")
 
     // bibliography settings
     show bibliography: set par(spacing: 0.6em)
@@ -197,10 +194,11 @@
             [#super(a.affiliations)]
         }).join(", ")\
     ]
-    set text(size: 8pt)
+    set text(size: 9pt)
     block(width: 100%)[
         #affiliations.enumerate().map((aff) => {
-            [#super([#aff.at(0)])]
+            let n = aff.at(0) + 1
+            [#super([#n])]
             [#aff.at(1)]
         }).join("\n")
     ]
