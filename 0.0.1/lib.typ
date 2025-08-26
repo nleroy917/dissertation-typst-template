@@ -167,7 +167,7 @@
 
     // bibliography settings
     show bibliography: set par(spacing: 0.6em)
-
+    show bibliography: set text(size: 10pt)
 
     doc
 }
@@ -184,4 +184,16 @@
     )
     [= #title]
     doc
+}
+
+#let figure-caption-extended(
+    caption: none
+) = {
+    set text(size: 10pt)
+    block(
+        inset: 10pt,
+        fill: rgb("#fafafa")
+    )[
+        #caption
+    ]
 }
