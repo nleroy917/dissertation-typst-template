@@ -214,7 +214,7 @@
     set figure(
         numbering: (..num) => numbering("1.1", int(cnt.display()), num.pos().first())
     )
-    [= #title]
+    context [= Chapter #cnt.display(): #title]
     doc
 }
 
