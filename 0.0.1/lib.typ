@@ -1,5 +1,7 @@
 #import "utils.typ": *
 
+#let LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 #let titlepage(
   title,
   author,
@@ -220,7 +222,7 @@
 
 // instantiate a new chapter. this lets us reset the counters for figures
 #let appendix(
-    number: "A",
+    title: none,
     doc
 ) = {
     // increment chapter counter
@@ -231,7 +233,8 @@
     set figure(
         numbering: (..num) => numbering("A.1", int(cnt.display()), num.pos().first())
     )
-    [= Appendix #number:]
+
+    context [= Appendix #LETTERS.at(int(cnt.display()) - 1): #title]
     doc
 }
 
