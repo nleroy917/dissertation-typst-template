@@ -155,7 +155,11 @@
     ]
 
     // table settings/style
-    show table: set text(size: 10pt)
+    show table: table => {
+        set text(size: 10pt)
+        set par(leading: 0.3em)
+        table
+    }
 
     // put table captions on top, fix supplement, align caption at center
     show figure.where(kind: table): set figure.caption(position: top)
