@@ -79,25 +79,33 @@
     )
 
     // heading settings
-    show heading.where( level: 1 ): set text(
-        font: "Helvetica",
-        size: 17pt,
-        weight: "extrabold"
-    )
-    show heading.where( level: 2 ): set text(
-        font: "Helvetica",
-        size: 14pt,
-    )
-    show heading.where( level: 3 ): set text(
-        font: "Helvetica",
-        size: 12pt,
-    )
-    show heading.where( level: 4 ): set text(
-        font: "Helvetica",
-        size: 11pt,
-        weight: "regular",
-        style: "italic"
-    )
+    show heading.where(level: 1): heading => {
+        set text(font: "Helvetica", size: 17pt, weight: "extrabold")
+        set block(above: 1.5em, below: 2.0em) // more breathing room after H1
+        set par(leading: 0.6em)
+        heading
+    }
+
+    show heading.where(level: 2): heading => {
+        set text(font: "Helvetica", size: 14pt)
+        set block(above: 1.3em, below: 1.4em) // still distinct but tighter
+        set par(leading: 0.6em)
+        heading
+    }
+
+    show heading.where(level: 3): heading => {
+        set text(font: "Helvetica", size: 12pt)
+        set block(above: 1.0em, below: 1.2em) // closer to body text
+        set par(leading: 0.6em)
+        heading
+    }
+
+    show heading.where(level: 4): heading => {
+        set text(font: "Helvetica", size: 11pt, weight: "bold", style: "italic")
+        set block(above: 1.0em, below: 1.2em) // very tight, almost inline
+        set par(leading: 0.6em)
+        heading
+    }
 
     // footnotes
     show footnote: set text(size: 9pt)
@@ -118,8 +126,7 @@
     set par(
         leading: 0.9em,
         justify: true,
-        spacing: 1.2em,
-        first-line-indent: 1.2em,    
+        spacing: 1.8em 
     )
 
     
@@ -141,6 +148,7 @@
 
     // figure settings/style
     show figure.caption: set text(size: 10pt)
+
     // https://forum.typst.app/t/how-to-customize-the-styling-of-caption-supplements/976/2
     show figure.caption: it => context [
         *#it.supplement~#it.counter.display()#it.separator*#it.body
@@ -151,13 +159,28 @@
 
     // put table captions on top, fix supplement, align caption at center
     show figure.where(kind: table): set figure.caption(position: top)
-    show figure.caption.where(kind: table): set align(center)
     show figure.where(kind: table): set figure(supplement: "Table")
-
+    show figure.caption.where(kind: table): set align(center)
+    
     // outline for table of contents
-    // show outline.entry.where(level: 1): set outline.entry(fill: none)
     show outline.entry.where(level: 1): set block(above: 1.2em)
     show outline.entry.where(level: 1): set text(weight: "bold")
+
+    // figure list outline
+    show outline
+        .where(target: figure.where(kind: image))
+        .or(outline.where(target: figure.where(kind: table))): it => {
+            show outline.entry.where(level: 1): it => {
+                set text(weight: "regular") // dont bold figure list
+                set par(leading: 0.6em)
+                set block(above: 0.6em)
+                it
+            }
+            it
+    }
+
+    // table list outline
+    show outline.where(target: figure.where(kind: table)): set par(leading: 0.6em)
 
     // equations
     set math.equation(numbering: "(1)")
@@ -209,7 +232,8 @@
 ) = {
     set text(size: 10pt)
     block(
-        inset: 10pt,
+        inset: 6pt,
+        below: 2.4em,
         fill: rgb("#fafafa")
     )[
         #caption
