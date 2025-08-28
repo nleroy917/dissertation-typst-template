@@ -210,6 +210,19 @@
     doc
 }
 
+// instantiate a new chapter. this lets us reset the counters for figures
+#let appendix(
+    number: "A",
+    doc
+) = {
+    // figure numbering so that the appendix is included (A.1, A.2, ...)
+    set figure(
+        numbering: (..num) => numbering("A.1", number, num.pos().first())
+    )
+    [= Appendix #number:]
+    doc
+}
+
 #let authors(
     authors: none,
     affiliations: none,
