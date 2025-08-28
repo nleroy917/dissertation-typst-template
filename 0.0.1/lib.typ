@@ -171,8 +171,15 @@
     show figure.caption.where(kind: table): set align(center)
     
     // outline for table of contents
-    show outline.entry.where(level: 1): set block(above: 1.2em)
-    show outline.entry.where(level: 1): set text(weight: "bold")
+    show outline.entry: entry => {
+        set par(leading: 0.3em)
+        entry
+    }
+    show outline.entry.where(level: 1): oline => {
+        set block(above: 1.2em)
+        set text(weight: "bold")
+        oline
+    }
 
     // figure list outline
     show outline
