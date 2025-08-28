@@ -46,6 +46,10 @@
     doc
 ) = {
 
+    // variables for the document
+    let _ = counter("chcounter")
+    let _ = counter("appendix")
+
     // generic text settings
     set text(
         font: "Helvetica",
@@ -199,12 +203,15 @@
 // instantiate a new chapter. this lets us reset the counters for figures
 #let chapter(
     title: none,
-    number: 0,
     doc
 ) = {
+    // increment chapter counter
+    let cnt = counter("chapter")
+    cnt.step()
+
     // figure numbering so that the chapter is included (1.1, 1.2, 2.1, ...)
     set figure(
-        numbering: (..num) => numbering("1.1", number, num.pos().first())
+        numbering: (..num) => numbering("1.1", int(cnt.display()), num.pos().first())
     )
     [= #title]
     doc
@@ -215,9 +222,13 @@
     number: "A",
     doc
 ) = {
+    // increment chapter counter
+    let cnt = counter("appendix")
+    cnt.step()
+
     // figure numbering so that the appendix is included (A.1, A.2, ...)
     set figure(
-        numbering: (..num) => numbering("A.1", number, num.pos().first())
+        numbering: (..num) => numbering("A.1", int(cnt.display()), num.pos().first())
     )
     [= Appendix #number:]
     doc
