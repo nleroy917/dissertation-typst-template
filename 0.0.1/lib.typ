@@ -183,7 +183,7 @@
         .or(outline.where(target: figure.where(kind: table))): it => {
             show outline.entry.where(level: 1): it => {
                 set text(weight: "regular") // dont bold figure list
-                set par(leading: 0.6em)
+                set par(leading: 0.3em)
                 set block(above: 0.6em)
                 it
             }
@@ -231,6 +231,7 @@
 
     // figure numbering so that the appendix is included (A.1, A.2, ...)
     set figure(
+        supplement: "Supplementary Figure",
         numbering: (..num) => numbering("A.1", int(cnt.display()), num.pos().first())
     )
 
@@ -242,6 +243,7 @@
     authors: none,
     affiliations: none,
 ) = {
+    set par(leading: 0.6em)
     set text(size: 10pt)
     block(width: 100%)[
         #authors.map(a => {
@@ -264,10 +266,23 @@
 ) = {
     set text(size: 10pt)
     block(
-        inset: 6pt,
-        below: 2.4em,
+        inset: (right: 6pt, left: 6pt, top: -6pt),
         fill: rgb("#fafafa")
     )[
         #caption
+    ]
+}
+
+#let todo(
+    content
+) = {
+    set par(leading: 0.6em)
+    set text(size: 12pt, fill: white)
+    set align(center)
+    block(
+        inset: 12pt,
+        fill: red
+    )[
+        *TODO:* #content
     ]
 }
