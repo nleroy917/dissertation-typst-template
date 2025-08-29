@@ -235,6 +235,9 @@
         numbering: (..num) => numbering("A.1", int(cnt.display()), num.pos().first())
     )
 
+    // table numbering
+    show figure.where(kind: table): set figure(supplement: "Supplementary Table")
+
     context [= Appendix #LETTERS.at(int(cnt.display()) - 1): #title]
     doc
 }
