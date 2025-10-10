@@ -80,7 +80,7 @@
     // set page layout
     set page(
         number-align: center, // left, center, right
-        margin: 0.5in,
+        margin: 1.0in,
         numbering: "1",
     )
 
@@ -101,7 +101,7 @@
 
     show heading.where(level: 3): heading => {
         set text(font: "Helvetica", size: 12pt)
-        set block(above: 1.0em, below: 1.2em) // closer to body text
+        set block(above: 1.3em, below: 1.0em) // closer to body text
         set par(leading: 0.6em)
         heading
     }
