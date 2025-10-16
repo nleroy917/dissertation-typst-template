@@ -108,7 +108,7 @@
 
     show heading.where(level: 4): heading => {
         set text(font: "Helvetica", size: 11pt, weight: "bold", style: "italic")
-        set block(above: 1.0em, below: 1.2em) // very tight, almost inline
+        set block(above: 1.2em, below: 1.2em) // very tight, almost inline
         set par(leading: 0.6em)
         heading
     }
@@ -132,7 +132,7 @@
     set par(
         leading: 0.9em,
         justify: true,
-        spacing: 1.8em 
+        spacing: 2.0em 
     )
 
     
@@ -273,6 +273,20 @@
         fill: rgb("#fafafa")
     )[
         #caption
+    ]
+}
+
+#let informational-note(
+    content
+) = {
+    set par(leading: 0.6em)
+    set text(size: 10pt)
+    set align(center)
+    block(
+        inset: 6pt,
+        fill: rgb("#e3e3e3")
+    )[
+        *Note:* #content
     ]
 }
 
