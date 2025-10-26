@@ -135,6 +135,16 @@
         spacing: 2.0em 
     )
 
+    show bibliography: bib => {
+        // reduce spacing in the bibliography since it looks
+        // too spaced out with the default settings above
+        set par(
+            leading: 0.45em,
+            spacing: 1.0em
+        )
+        bib
+    }
+
     
     // table settings/style
     set table(
