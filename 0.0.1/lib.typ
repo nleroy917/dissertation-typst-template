@@ -130,7 +130,7 @@
 
     // paragraph settings
     set par(
-        leading: 0.9em,
+        leading: 1.25em,
         justify: true,
         spacing: 2.0em 
     )
@@ -278,6 +278,7 @@
     caption: none
 ) = {
     set text(size: 10pt)
+    set par(leading: 0.6em)
     block(
         inset: (right: 6pt, left: 6pt, top: -6pt),
         fill: rgb("#fafafa")
