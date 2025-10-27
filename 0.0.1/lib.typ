@@ -183,9 +183,11 @@
     show figure.caption.where(kind: table): set align(center)
     
     // outline for table of contents
-    show outline.entry: set par(leading: 0.4em)
+    show outline.entry: set par(leading: 0.4em, spacing: 0.4em)
     show outline.entry.where(level: 1): set block(above: 1.2em)
     show outline.entry.where(level: 1): set text(weight: "bold")
+    show outline.entry.where(level: 2): set block(above: 1.0em)
+    show outline.entry.where(level: 3): set block(above: 0.8em)
 
     // figure list outline
     show outline
@@ -193,7 +195,7 @@
         .or(outline.where(target: figure.where(kind: table))): it => {
             show outline.entry.where(level: 1): it => {
                 set text(weight: "regular") // dont bold figure list
-                set par(leading: 0.3em)
+                set par(leading: 0.4em, spacing: 0.4em)
                 set block(above: 0.6em)
                 it
             }
@@ -201,7 +203,7 @@
     }
 
     // table list outline
-    show outline.where(target: figure.where(kind: table)): set par(leading: 0.6em)
+    show outline.where(target: figure.where(kind: table)): set par(leading: 0.4em, spacing: 0.4em)
 
     // equations
     set math.equation(numbering: "(1)")
