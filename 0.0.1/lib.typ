@@ -212,6 +212,12 @@
     show bibliography: set par(spacing: 0.6em)
     show bibliography: set text(size: 10pt)
 
+    // codeblocks
+    show raw.where(lang: "python"): r => {
+        set par(leading: 0.4em, spacing: 0.4em)
+        r 
+    }
+
     doc
 }
 
